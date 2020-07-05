@@ -1,18 +1,64 @@
-import React, { Fragment } from 'react';
-import Head from 'next/head';
+import React, {Component} from 'react';
+import Layout from '../components/Layout';
 
-const Layout = props => (
-<Fragment>
-    <Head>
-        <meta charSet={"utf-8"} />
-        <meta name={"viewport"} content={"width=device-width, initial-scale=1, shrink-to-fit=no"} />
-        <link rel={"stylesheet"} href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-              crossOrigin="anonymous" />
-              <title>{props.pageTitle || 'Chat Application'}</title>
-    </Head>
-    {props.children}
-</Fragment>
+
+class FrontPage extends Component {
+    state = {user: null}
+
+    handleKeyUp = evt => {
+        if (evt.keyCode == 13) {  //Enter Key
+
+            const user = evt.target.value;
+            this.setState({user})
+        }
+    }
+
+    render() {
+        const {user} = this.state;
+        const nameInputStyles = {
+            background: 'transparent',
+            color: '#999',
+            border: 0,
+            borderBottom: '1px solid #666',
+            borderRadius: 0,
+            fontSize: '3rem',
+            fontWeight: 500,
+            boxShadow: 'none !important'
+        };
+
+        return (
+            <Layout pageTitle={"Realtime Chat App"}>
+                <main className={"container-fluid position-absolute h-100 bg-dark"}>
+                    <div className={"row position-absolute w-100 h-100"}>
+                        <section className={"col-md-8 d-flex flex-row " +
+                        "flex-wrap align-items-center align-content-center px-5"}>
+                            <div className={"px-5 mx-5"}>
+                            <span className="d-block w-100 h1 text-light"
+                                  style={{marginTop: -50}}>
+                                {
+                                    user
+                                        ? (<span>
+                                      <span style={{color: '#999'}}>Hello!</span> {user}
+                                    </span>)
+                                        : `What is your name?`
+                                }
+                            </span>
+                                {!user && <input type={"text"} className="form-control mt-3 px-3 py-2"
+                                                 onKeyUp={this.handleKeyUp} autoComplete="off"
+                                                 style={nameInputStyles}/>}
+
+                            </div>
+                        </section>
+                        <section className={"col-md-4 position-relative d-flex flex-wrap h-100" +
+                        "align-items-start align-content-between bg-white px-0"}></section>
+                    </div>
+                </main>
+            </Layout>
+        );
+    }
+
+}
+
+export default () => (
+    <FrontPage/>
 );
-
-export default Layout;
