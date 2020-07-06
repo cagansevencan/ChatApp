@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Layout from '../components/Layout';
-
+import Chat from "../Components/Chat";
 
 class FrontPage extends Component {
     state = {user: null}
@@ -36,8 +36,7 @@ class FrontPage extends Component {
                             <span className="d-block w-100 h1 text-light"
                                   style={{marginTop: -50}}>
                                 {
-                                    user
-                                        ? (<span>
+                                    user ? (<span>
                                       <span style={{color: '#999'}}>Hello!</span> {user}
                                     </span>)
                                         : `What is your name?`
@@ -50,14 +49,16 @@ class FrontPage extends Component {
                             </div>
                         </section>
                         <section className={"col-md-4 position-relative d-flex flex-wrap h-100" +
-                        "align-items-start align-content-between bg-white px-0"}></section>
+                        "align-items-start align-content-between bg-white px-0"}>
+                            {user && <Chat activeUser={user}/>}
+                        </section>
                     </div>
                 </main>
             </Layout>
         );
     }
 
-}
+};
 
 export default () => (
     <FrontPage/>
