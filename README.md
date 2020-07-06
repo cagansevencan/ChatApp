@@ -6,7 +6,7 @@ This project contains the source code for a very simple realtime chat applicatio
 
 Here is a screenshot of the application.
 
-![Chat Screenshot](https://i.imgur.com/vROYgFJ.png)
+![Chat Screenshot](https://imgur.com/xznosg9.png)
 
 ## Getting Started
 
