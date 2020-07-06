@@ -49,7 +49,8 @@ app.prepare().then(() => {
 
     });
 
-    server.post('messages', (req,res,next) => {
+    server.post('messages', (req,res,next) => {  // whenever user makes a POST req,
+        // it gets all messages in the chat history in the returned response
         res.json({...chatHistory, status: 'success'});
     });
 
